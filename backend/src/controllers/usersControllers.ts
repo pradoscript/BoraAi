@@ -68,6 +68,10 @@ class UsersController {
             next(error)
         }
     }
+
+    async show(request: Request, response: Response, next: NextFunction) {
+        return response.json({ message: "ok" })
+    }
 }
 
 export { UsersController }
