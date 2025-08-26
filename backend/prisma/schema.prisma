@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+  name String
+  email String
+  password String
+  isVerified Boolean @default(false)
+  rooms Room[]
+  guests RoomGuests[]
+  @@map("users")
+}
+
+model Room {
+  id String @id @default(uuid())
+  event String
+  password_room String
+  owner_id String
+  description String
+  total_price Decimal @db.Decimal(10, 2)
+  date String
+  start_at String
+  end_at String
+  guests RoomGuests[]
+  
+  user User @relation(fields: [owner_id], references: [id])
+
+  @@map("rooms")
+}
+
+model RoomGuests {
+    @@id([room_id, user_id])
+    user_id String
+    room_id String
+    is_host Boolean
+    confirmed Boolean
+
+    
+    user User @relation(fields: [user_id], references: [id])
+    room Room @relation(fields: [room_id], references: [id], onDelete: Cascade)
+    @@map("roomsGuests")
+}
