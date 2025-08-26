@@ -1,0 +1,17 @@
+.footerStyles {
+  background-color: #170030;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  min-height: 4rem;
+  flex-shrink: 0;
+  width: 100%;
+  margin: 0;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(204, 1, 200, 0.2);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 10;
+}

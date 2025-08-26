@@ -1,0 +1,471 @@
+.header {
+  height: 12vh;
+  min-height: 80px;
+  width: 100%;
+  background: rgba(23, 0, 48, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 0 1.5rem;
+  position: fixed;
+  display: flex;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(204, 1, 200, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.logoContainer {
+  flex-shrink: 0;
+  z-index: 1002;
+}
+
+.logoHeader {
+  height: 4.5rem;
+  max-height: 100%;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.4));
+}
+
+.logoHeader:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 2px 8px rgba(204, 1, 200, 0.4));
+}
+
+.desktopMenu {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.linkStyles {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #cc01c8, #a501a2);
+  padding: 0.7rem 1.5rem;
+  border-radius: 2rem;
+  color: white;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(204, 1, 200, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.linkStyles::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: all 0.5s ease;
+}
+
+.linkStyles:hover {
+  background: linear-gradient(135deg, #e501e0, #c501c2);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(204, 1, 200, 0.4);
+}
+
+.linkStyles:hover::before {
+  left: 100%;
+}
+
+.linkStyles.activeLink {
+  background: linear-gradient(135deg, #ff00fb, #cc01c8);
+  box-shadow: 0 0 15px rgba(204, 1, 200, 0.6);
+}
+
+.linkIcon {
+  font-size: 1.1rem;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: 1rem;
+  padding-left: 1.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.userAvatar {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.userAvatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(204, 1, 200, 0.5);
+}
+
+.onlineIndicator {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #00e676, #00c853);
+  border-radius: 50%;
+  border: 2px solid #170030;
+}
+
+.userName {
+  color: #fff;
+  margin: 0;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.logoutButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #ff5252, #d50000);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(255, 82, 82, 0.25);
+}
+
+.logoutButton:hover {
+  background: linear-gradient(135deg, #ff1744, #ff5252);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255, 82, 82, 0.35);
+}
+
+.logoutIcon {
+  font-size: 1.1rem;
+}
+
+/* Menu Mobile */
+.mobileMenuWrapper {
+  display: none;
+  position: relative;
+}
+
+/* Conteúdo do menu mobile - CENTRALIZADO */
+.mobileMenuContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+/* Links mobile - CENTRALIZADOS */
+.mobileLink {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: linear-gradient(135deg, #cc01c8, #a501a2);
+  padding: 1.2rem 2rem;
+  border-radius: 2rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.2rem;
+  width: 100%;
+  max-width: 280px;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(204, 1, 200, 0.4);
+  margin: 0.5rem 0;
+}
+
+.mobileLink:hover {
+  background: linear-gradient(135deg, #e501e0, #c501c2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(204, 1, 200, 0.5);
+}
+
+.activeMobileLink {
+  background: linear-gradient(135deg, #ff00fb, #cc01c8);
+  box-shadow: 0 0 20px rgba(204, 1, 200, 0.6);
+}
+
+.mobileUserSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  max-width: 280px;
+}
+
+.mobileUserName {
+  color: #fff;
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.3rem;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.mobileLogoutButton {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: linear-gradient(135deg, #ff5252, #d50000);
+  color: white;
+  border: none;
+  padding: 1rem 1.8rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 82, 82, 0.3);
+}
+
+.mobileLogoutButton:hover {
+  background: linear-gradient(135deg, #ff1744, #ff5252);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 82, 82, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .header {
+    height: 10vh;
+    min-height: 70px;
+    padding: 0 1.2rem;
+  }
+
+  .logoHeader {
+    height: 3.8rem;
+  }
+
+  .desktopMenu {
+    gap: 1.2rem;
+  }
+
+  .linkStyles {
+    padding: 0.6rem 1.3rem;
+    font-size: 0.9rem;
+  }
+
+  .userName {
+    max-width: 100px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktopMenu {
+    display: none;
+  }
+
+  .mobileMenuWrapper {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    height: 10vh;
+    min-height: 60px;
+    padding: 0 1rem;
+  }
+
+  .logoHeader {
+    height: 3.2rem;
+  }
+
+  .mobileLink {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    max-width: 250px;
+  }
+
+  .mobileLogoutButton {
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .mobileUserName {
+    font-size: 1.1rem;
+  }
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* ===== Ícone hambúrguer customizado (mobile) ===== */
+.burgerButton {
+  display: none;
+  position: relative;
+  z-index: 1200;
+  width: 32px;
+  height: 26px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.burgerLine {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.35s ease, opacity 0.25s ease, width 0.25s ease;
+  transform-origin: center;
+}
+
+.burgerLine + .burgerLine {
+  margin-top: 6px;
+}
+
+/* estado aberto: vira "X" */
+.open .burgerLine:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.open .burgerLine:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.open .burgerLine:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+.burgerButton:hover .burgerLine,
+.burgerButton:focus-visible .burgerLine {
+  width: 100%;
+}
+
+/* Mostrar ícone só no mobile */
+@media (max-width: 768px) {
+  .burgerButton {
+    display: block;
+    position: fixed;
+    top: 1.6rem;
+    right: 1.5rem;
+  }
+}
+
+/* Garantir que os itens do menu fiquem centralizados */
+.bm-item {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Estilos específicos para o react-burger-menu */
+:global(.bm-menu-wrap) {
+  z-index: 1100;
+}
+
+:global(.bm-menu) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+:global(.bm-item-list) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+/* Adicione estas regras ao final do arquivo */
+
+@media (max-width: 380px) {
+  .header {
+    height: 10vh;
+    min-height: 50px;
+    padding: 0 0.8rem;
+  }
+
+  .logoHeader {
+    height: 2.8rem;
+  }
+
+  .burgerButton {
+    top: 1.7rem;
+    right: 1rem;
+    width: 28px;
+    height: 22px;
+  }
+
+  .mobileLink {
+    padding: 0.9rem 1.2rem;
+    font-size: 1rem;
+    max-width: 220px;
+  }
+
+  .mobileLogoutButton {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .mobileUserName {
+    font-size: 1rem;
+  }
+}
