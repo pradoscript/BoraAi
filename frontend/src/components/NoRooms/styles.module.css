@@ -1,0 +1,92 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  padding: 1rem;
+  width: 100%;
+}
+
+.sadFace {
+  height: 12rem;
+  max-width: 100%;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+}
+
+.moldura {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 2rem;
+  text-align: center;
+  max-width: 90%;
+}
+
+.moldura h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  line-height: 1.4;
+  font-weight: normal;
+}
+
+.moldura h2 span {
+  color: #cc01c8;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .mainContainer {
+    min-height: 40vh;
+    padding: 0.5rem;
+  }
+
+  .sadFace {
+    height: 10rem;
+  }
+
+  .moldura {
+    padding: 1.5rem;
+  }
+
+  .moldura h2 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContainer {
+    min-height: 35vh;
+  }
+
+  .sadFace {
+    height: 8rem;
+  }
+
+  .moldura {
+    padding: 1rem;
+    border-radius: 1.5rem;
+  }
+
+  .moldura h2 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .sadFace {
+    height: 6rem;
+  }
+
+  .moldura h2 {
+    font-size: 1rem;
+  }
+
+  .moldura {
+    padding: 0.8rem;
+  }
+}
