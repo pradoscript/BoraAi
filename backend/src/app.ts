@@ -5,7 +5,7 @@ import cors from "cors"
 
 const app = express()
 app.use(cors({
-    origin: process.env.URL_REQUEST
+    origin: process.env.URL_REQUEST_FRONT
 }))
 app.use(express.json())
 app.use(routes)

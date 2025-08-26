@@ -43,7 +43,7 @@ class UsersController {
                 { expiresIn: "1d" }
             )
 
-            const verificationLink = `${process.env.URL_REQUEST}/register/verify/${token}`
+            const verificationLink = `${process.env.URL_REQUEST_VERIFY}/register/verify/${token}`
 
             const transporter = nodemailer.createTransport({
                 service: "gmail",
