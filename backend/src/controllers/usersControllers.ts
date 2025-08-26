@@ -43,7 +43,7 @@ class UsersController {
                 { expiresIn: "1d" }
             )
 
-            const verificationLink = `http://localhost:3333/register/verify/${token}`
+            const verificationLink = `${process.env.URL_REQUEST}/register/verify/${token}`
 
             const transporter = nodemailer.createTransport({
                 service: "gmail",
@@ -67,10 +67,6 @@ class UsersController {
         catch (error) {
             next(error)
         }
-    }
-
-    async show(request: Request, response: Response, next: NextFunction) {
-        return response.json({ message: "ok" })
     }
 }
 
