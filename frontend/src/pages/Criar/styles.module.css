@@ -1,0 +1,191 @@
+.mainContainer {
+  width: 100%;
+  min-height: calc(100vh - 12vh - 5rem);
+  background: linear-gradient(to top, #511691, #320068, #170030);
+  padding: 3rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainContainer form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  margin: 1rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.horarioGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.dataSenhaGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.horarioGroup .formGroup,
+.dataSenhaGroup .formGroup {
+  margin-bottom: 0;
+}
+
+.mainContainer label {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.mainContainer input,
+.mainContainer textarea {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+.mainContainer input::placeholder,
+.mainContainer textarea::placeholder {
+  color: #888;
+}
+
+.mainContainer input:focus,
+.mainContainer textarea:focus {
+  outline: none;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(204, 1, 200, 0.4);
+  transform: translateY(-2px);
+}
+
+.mainContainer textarea {
+  min-height: 120px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.passwordField {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 0.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submitButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.mainContainer button[type="submit"] {
+  background: linear-gradient(135deg, #cc01c8, #a501a2);
+  color: white;
+  padding: 1.2rem 2.5rem;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 200px;
+  box-shadow: 0 5px 15px rgba(204, 1, 200, 0.3);
+}
+
+.mainContainer button[type="submit"]:hover {
+  background: linear-gradient(135deg, #e501e0, #c501c2);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(204, 1, 200, 0.4);
+}
+
+.mainContainer button[type="submit"]:disabled {
+  background: #9b9b9b;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.formContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .mainContainer {
+    padding: 1rem;
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+
+  .mainContainer form {
+    padding: 1.8rem;
+    gap: 1.2rem;
+    margin-top: 0;
+  }
+
+  .horarioGroup,
+  .dataSenhaGroup {
+    grid-template-columns: 1fr;
+  }
+
+  .mainContainer button[type="submit"] {
+    width: 100%;
+    max-width: none;
+    padding: 1.1rem 2rem;
+  }
+
+  .submitButtonContainer {
+    margin-top: 1rem;
+  }
+}
+
+.formTitle {
+  text-align: center;
+  color: white;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.formSection {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
