@@ -8,19 +8,25 @@ export default function Register() {
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [message, setMessage] = useState("");
+    const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
 
     const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
+        setMessage("")
 
         try {
             await api.post("/register", { name, email, password });
-            alert("Usuário criado com sucesso!");
+            setIsError(false);
+            setMessage("Confirme o seu email para finalizar o cadastro!")
             navigate("/login");
+            setTimeout(() => navigate("/login"), 2000);
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
-            alert(error.response?.data?.message || "Erro ao criar usuário");
+            setIsError(true);
+            setMessage(error.response?.data?.message || "Erro ao criar usuário");
         } finally {
             setIsLoading(false);
         }
@@ -38,6 +44,15 @@ export default function Register() {
                         className={styles.logo}
                     />
                 </div>
+
+                {message && (
+                    <div
+                        className={`${styles.messageBox} ${isError ? styles.error : styles.success
+                            }`}
+                    >
+                        {message}
+                    </div>
+                )}
 
                 <form onSubmit={handleRegister} className={styles.formContainer}>
                     <div className={styles.formCard}>
