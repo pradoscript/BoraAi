@@ -34,7 +34,7 @@ export default function Login() {
 
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
-            setMessage(error.response?.data?.message || "Erro ao realizar o Login");
+            setMessage(error.response?.data?.message || "Erro ao entrar!");
         } finally {
             setIsLoading(false);
         }
