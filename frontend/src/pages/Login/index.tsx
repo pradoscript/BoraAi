@@ -8,6 +8,7 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [message, setMessage] = useState("")
     const navigate = useNavigate();
     const { setToken, setUser } = useContext(AuthContext);
 
@@ -17,7 +18,6 @@ export default function Login() {
 
         try {
             const { data } = await api.post("/login", { email, password });
-
             if (!data.token) {
                 throw new Error("Token não recebido do servidor");
             }
@@ -34,7 +34,7 @@ export default function Login() {
 
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
-            alert(error.response?.data?.message || "Erro ao fazer login");
+            setMessage(error.response?.data?.message || "Erro ao realizar o Login");
         } finally {
             setIsLoading(false);
         }
@@ -52,6 +52,15 @@ export default function Login() {
                         className={styles.logo}
                     />
                 </div>
+
+                {message && (
+                    <div
+                        className={`${styles.messageBox} ${styles.error}
+                            `}
+                    >
+                        {message}
+                    </div>
+                )}
 
                 <form onSubmit={handleLogin} className={styles.formContainer}>
                     <div className={styles.formCard}>
