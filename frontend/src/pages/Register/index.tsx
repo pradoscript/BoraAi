@@ -21,8 +21,7 @@ export default function Register() {
             await api.post("/register", { name, email, password });
             setIsError(false);
             setMessage("Confirme o seu email para finalizar o cadastro!")
-            navigate("/login");
-            setTimeout(() => navigate("/login"), 2000);
+            setTimeout(() => navigate("/login"), 3000);
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             setIsError(true);
