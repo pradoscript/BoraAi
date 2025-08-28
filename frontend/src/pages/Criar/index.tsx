@@ -1,4 +1,3 @@
-
 import { api } from "../../services/api"
 import styles from "./styles.module.css"
 import { useState, useContext } from "react"
@@ -19,16 +18,21 @@ export default function Criar() {
     const [showPassword, setShowPassword] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
+    const [error, setError] = useState("")
+    const [success, setSuccess] = useState("")
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (!token) {
-            alert("Você precisa estar logado para criar uma sala!");
-            navigate("/login");
+            setError("Você precisa estar logado para criar uma sala!")
+            setTimeout(() => navigate("/login"), 2000)
             return;
         }
 
         setIsLoading(true);
+        setError("");
+        setSuccess("");
 
         try {
             await api.post("rooms/create", {
@@ -41,7 +45,9 @@ export default function Criar() {
                 password_room: password
             })
 
-            alert("Sala criada com sucesso!")
+            setSuccess("Sala criada com sucesso!")
+
+
             setEvent("")
             setDescription("")
             setPassword("")
@@ -50,23 +56,24 @@ export default function Criar() {
             setFinish("")
             setValue("")
 
-            navigate("/roles")
+
+            setTimeout(() => navigate("/roles"), 6000)
 
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             console.error("Erro ao criar sala:", error);
 
             if (error.response?.status === 401) {
-                alert("Sessão expirada. Faça login novamente.");
-                navigate("/login");
+                setError("Sessão expirada. Faça login novamente.")
+                setTimeout(() => navigate("/login"), 2000)
             } else {
-                alert(error.response?.data?.message || "Erro ao criar sala");
+                const errorMessage = error.response?.data?.message || "Erro ao criar sala"
+                setError(errorMessage)
             }
         } finally {
             setIsLoading(false);
         }
     };
-
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword)
@@ -74,6 +81,11 @@ export default function Criar() {
 
     return (
         <main className={styles.mainContainer}>
+            <div className={styles.messagesContainer}>
+                {error && <div className={styles.errorMessage}>{error}</div>}
+                {success && <div className={styles.successMessage}>{success}</div>}
+            </div>
+
             <form onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.formContent}>
                     <div className={styles.formGroup}>
@@ -103,11 +115,12 @@ export default function Criar() {
                         <div className={styles.formGroup}>
                             <label htmlFor="data">Data:</label>
                             <input
-                                type="text"
+                                type="date"
                                 id="date"
                                 placeholder="DD/MM/YYYY"
                                 value={date}
                                 onChange={e => setDate(e.target.value)}
+                                min={new Date().toISOString().split("T")[0]}
                                 required
                             />
                         </div>
@@ -139,7 +152,7 @@ export default function Criar() {
                         <div className={styles.formGroup}>
                             <label htmlFor="inicio">Inicia:</label>
                             <input
-                                type="text"
+                                type="time"
                                 id="inicio"
                                 placeholder="17:00"
                                 value={start}
@@ -151,7 +164,7 @@ export default function Criar() {
                         <div className={styles.formGroup}>
                             <label htmlFor="fim">Finaliza:</label>
                             <input
-                                type="text"
+                                type="time"
                                 id="fim"
                                 placeholder="22:00"
                                 value={finish}
@@ -188,19 +201,3 @@ export default function Criar() {
         </main>
     )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
