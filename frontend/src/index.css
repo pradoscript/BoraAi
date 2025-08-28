@@ -5,6 +5,15 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #170030 0%, #320068 50%, #511691 100%);
+}
+
 a {
   text-decoration: none;
   color: #fff;

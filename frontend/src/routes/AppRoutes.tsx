@@ -1,4 +1,4 @@
-
+import { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ProtectedRoute } from "../components/ProtectedRoutes";
 import { PublicRoute } from "../components/PublicRoutes";
@@ -11,81 +11,85 @@ import Layout from "../components/Layout";
 import Criar from "../pages/Criar";
 import Room from "../pages/Role";
 import Entrar from "../pages/Entrar";
+import Loading from "../components/Loading";
 
 export const AppRoutes = () => {
     return (
-        <Routes>
+        <Suspense fallback={<Loading />}>
 
-            <Route
-                path="/"
-                element={
-                    <PublicRoute>
-                        <Inicio />
-                    </PublicRoute>
-                }
-            />
-            <Route
-                path="/register"
-                element={
-                    <PublicRoute>
-                        <Register />
-                    </PublicRoute>
-                }
-            />
-            <Route
-                path="/login"
-                element={
-                    <PublicRoute>
-                        <Login />
-                    </PublicRoute>
-                }
-            />
-
-
-
-
-            <Route path="*" element={<Navigate to="/" replace />} />
-
-            <Route element={<Layout />}>
+            <Routes>
 
                 <Route
-                    path="/roles"
+                    path="/"
                     element={
-                        <ProtectedRoute>
-                            <Roles />
-                        </ProtectedRoute>
+                        <PublicRoute>
+                            <Inicio />
+                        </PublicRoute>
+                    }
+                />
+                <Route
+                    path="/register"
+                    element={
+                        <PublicRoute>
+                            <Register />
+                        </PublicRoute>
+                    }
+                />
+                <Route
+                    path="/login"
+                    element={
+                        <PublicRoute>
+                            <Login />
+                        </PublicRoute>
                     }
                 />
 
-                <Route
-                    path="/criar-role"
-                    element={
-                        <ProtectedRoute>
-                            <Criar />
-                        </ProtectedRoute>
-                    }
-                />
-
-                <Route
-                    path="/rooms/:roomId"
-                    element={
-                        <ProtectedRoute>
-                            <Room />
-                        </ProtectedRoute>
-                    }
-                />
-
-                <Route
-                    path="/entrar"
-                    element={
-                        <ProtectedRoute>
-                            <Entrar />
-                        </ProtectedRoute>
-                    }
-                />
-            </Route>
 
 
-        </Routes>
+
+                <Route path="*" element={<Navigate to="/" replace />} />
+
+                <Route element={<Layout />}>
+
+                    <Route
+                        path="/roles"
+                        element={
+                            <ProtectedRoute>
+                                <Roles />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    <Route
+                        path="/criar-role"
+                        element={
+                            <ProtectedRoute>
+                                <Criar />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    <Route
+                        path="/rooms/:roomId"
+                        element={
+                            <ProtectedRoute>
+                                <Room />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    <Route
+                        path="/entrar"
+                        element={
+                            <ProtectedRoute>
+                                <Entrar />
+                            </ProtectedRoute>
+                        }
+                    />
+                </Route>
+
+
+            </Routes>
+        </Suspense>
     );
 };

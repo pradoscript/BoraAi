@@ -128,8 +128,6 @@ export default function Roles() {
         );
     }
 
-    console.log({ message: rooms[0] })
-
     return (
         <main className={styles.mainContainer}>
             <div className={styles.header}>
