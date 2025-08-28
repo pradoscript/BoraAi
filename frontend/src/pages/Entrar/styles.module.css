@@ -139,6 +139,16 @@
   font-weight: 600;
 }
 
+.successMessage {
+  color: #4bb543;
+  text-align: center;
+  padding: 0.8rem;
+  background: rgba(75, 181, 67, 0.1);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(75, 181, 67, 0.3);
+  font-weight: 600;
+}
+
 .backLink {
   text-align: center;
   margin-top: 1rem;
