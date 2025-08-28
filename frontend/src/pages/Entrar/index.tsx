@@ -13,6 +13,7 @@ export default function Entrar() {
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -25,6 +26,7 @@ export default function Entrar() {
 
         setIsLoading(true);
         setError("");
+        setSuccess("");
 
         try {
             await api.post("/rooms/join", {
@@ -32,11 +34,17 @@ export default function Entrar() {
                 event_password: password
             });
 
-            alert("Você entrou na sala com sucesso!");
+
+            setSuccess("Você entrou na sala com sucesso!");
+
+
             setRoomName("");
             setPassword("");
 
-            navigate("/roles");
+
+            setTimeout(() => {
+                navigate("/roles");
+            }, 4000);
 
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
@@ -91,6 +99,9 @@ export default function Entrar() {
                     </div>
 
                     {error && <div className={styles.errorMessage}>{error}</div>}
+
+
+                    {success && <div className={styles.successMessage}>{success}</div>}
 
                     <div className={styles.submitButtonContainer}>
                         <button
