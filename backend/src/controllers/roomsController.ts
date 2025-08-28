@@ -67,7 +67,6 @@ class RoomsController {
 
         try {
             const userId = request.user!.id
-            console.log(userId)
             const rooms = await prisma.room.findMany({
                 where: {
                     guests: {
