@@ -131,8 +131,25 @@ export default function Room() {
     };
 
     const formatDate = (dateString: string) => {
-        return dateString || "Data não informada";
+        if (!dateString) return "Data não informada";
+        const date = new Date(dateString);
+        return date.toLocaleDateString("pt-BR", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+        });
     };
+
+    const formatTime = (timeString: string) => {
+        if (!timeString) return "";
+        const date = new Date(timeString);
+        return date.toLocaleTimeString("pt-BR", {
+            hour: "2-digit",
+            minute: "2-digit",
+        });
+    };
+
+
 
     const getConfirmedGuestsCount = () => {
         return room?.guests.filter(guest => guest.confirmed).length || 0;
@@ -242,7 +259,7 @@ export default function Room() {
                             <span className={styles.icon}>⏰</span>
                             <div>
                                 <h3>Horário</h3>
-                                <p>{room.start_at} - {room.end_at}</p>
+                                <p>{formatTime(room.start_at)} - {formatTime(room.end_at)}</p>
                             </div>
                         </div>
 

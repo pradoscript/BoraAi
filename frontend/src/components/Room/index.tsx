@@ -53,8 +53,25 @@ export default function RoomCard({ room, onViewDetails }: RoomCardProps) {
     };
 
     const formatDate = (dateString: string) => {
-        return dateString || "Data não informada";
+        if (!dateString) return "Data não informada";
+        const date = new Date(dateString);
+        return date.toLocaleDateString("pt-BR", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+        });
     };
+
+
+    const formatTime = (timeString: string) => {
+        if (!timeString) return "";
+        const date = new Date(timeString);
+        return date.toLocaleTimeString("pt-BR", {
+            hour: "2-digit",
+            minute: "2-digit",
+        });
+    };
+
 
     return (
         <div className={styles.roomCard}>
@@ -74,7 +91,7 @@ export default function RoomCard({ room, onViewDetails }: RoomCardProps) {
                 </div>
                 <div className={styles.detail}>
                     <span>⏰</span>
-                    {room.start_at} - {room.end_at}
+                    {formatTime(room.start_at)} - {formatTime(room.end_at)}
                 </div>
                 <div className={styles.detail}>
                     <span>👤</span>

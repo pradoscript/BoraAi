@@ -5,8 +5,35 @@
   padding: 3rem;
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.messagesContainer {
+  width: 20%;
+  max-width: 600px;
+  margin-bottom: 1rem;
+}
+
+.errorMessage,
+.successMessage {
+  color: #ff6b6b;
+  text-align: center;
+  padding: 0.8rem;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  font-weight: 600;
+  margin: 0.5rem 0;
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.successMessage {
+  color: #51cf66;
+  background: rgba(81, 207, 102, 0.1);
+  border: 1px solid rgba(81, 207, 102, 0.3);
 }
 
 .mainContainer form {
@@ -21,7 +48,6 @@
   flex-direction: column;
   gap: 1.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  margin: 1rem;
 }
 
 .formGroup {
@@ -148,14 +174,24 @@
 @media (max-width: 768px) {
   .mainContainer {
     padding: 1rem;
-    align-items: flex-start;
+    align-items: center;
     padding-top: 2rem;
+  }
+
+  .messagesContainer {
+    max-width: 50%;
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
   }
 
   .mainContainer form {
     padding: 1.8rem;
     gap: 1.2rem;
     margin-top: 0;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .horarioGroup,
@@ -171,6 +207,12 @@
 
   .submitButtonContainer {
     margin-top: 1rem;
+  }
+
+  .errorMessage,
+  .successMessage {
+    margin: 1rem 0;
+    box-sizing: border-box;
   }
 }
 
