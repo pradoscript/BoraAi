@@ -25,9 +25,9 @@ model Room {
   owner_id String
   description String
   total_price Decimal @db.Decimal(10, 2)
-  date String
-  start_at String
-  end_at String
+  date DateTime
+  start_at DateTime
+  end_at DateTime
   guests RoomGuests[]
   
   user User @relation(fields: [owner_id], references: [id])

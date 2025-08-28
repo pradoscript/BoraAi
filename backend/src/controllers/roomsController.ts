@@ -10,15 +10,10 @@ class RoomsController {
                 name_event: z.string(),
                 description: z.string(),
                 total_price: z.number(),
-                date: z.string().regex(/^([0-2][0-9]|3[0-1])\/([0][1-9]|1[0-2])\/(\d{4})$/, "Data inválida, use dd/mm/aaaa"),
-                start_at: z.string().regex(
-                    /^([01]\d|2[0-3]):([0-5]\d)$/,
-                    "Hora inválida, use formato HH:mm"
-                ),
-                end_at: z.string().regex(
-                    /^([01]\d|2[0-3]):([0-5]\d)$/,
-                    "Hora inválida, use formato HH:mm"
-                ),
+                date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Data inválida, use yyyy-mm-dd"),
+                start_at: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Hora inválida, use HH:mm"),
+                end_at: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Hora inválida, use HH:mm"),
+
                 password_room: z.string()
             })
             const { name_event, description, total_price, date, start_at, end_at, password_room } = bodySchema.parse(request.body)
@@ -31,6 +26,9 @@ class RoomsController {
                 throw new AppError("Uma sala já possui esse nome!")
             }
 
+            const startDateTime = new Date(`${date}T${start_at}:00`);
+            const endDateTime = new Date(`${date}T${end_at}:00`);
+            const onlyDate = new Date(date);
 
             await prisma.$transaction(async (tx) => {
                 const createdRoom = await tx.room.create({
@@ -39,9 +37,9 @@ class RoomsController {
                         event: name_event,
                         description,
                         total_price,
-                        date,
-                        start_at,
-                        end_at,
+                        date: onlyDate,
+                        start_at: startDateTime,
+                        end_at: endDateTime,
                         password_room
                     }
                 })
